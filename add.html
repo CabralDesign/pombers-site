@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Play Pombers with me</title>
+  <meta name="description" content="A friend invited you to Pombers. Get the app, then add their tag.">
+  <meta name="apple-itunes-app" content="app-id=6814720085">
+  <meta property="og:title" content="Play Pombers with me">
+  <meta property="og:description" content="Tap to add me as a friend.">
+  <meta property="og:image" content="https://pombers.com/img/apple-touch-icon.png">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/dynapuff-semicondensed-semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/site.js" defer></script>
+</head>
+<body>
+  <!-- Invite links: pombers.com/add?tag=4412. With Pombers installed, iOS opens the app instead of
+       this page (.well-known/apple-app-site-association). Without it, this page: the tag and the
+       App Store. Only digits are ever taken from the link. -->
+  <div class="page home">
+    <header class="nav">
+      <a href="/" aria-label="Pombers — home">Pombers</a>
+    </header>
+    <main class="art">
+      <img src="/img/pomber.svg" width="912" height="717" alt="A pomber peeking out of its hole">
+    </main>
+    <section class="invite">
+      <h1>Play with <span data-tag>a friend</span></h1>
+      <p data-hint>Get Pombers, then add your friend’s tag on <em>Account → Friends</em>.</p>
+      <a class="store" href="https://apps.apple.com/app/id6814720085">
+        <img src="/img/app-store.svg" width="140" height="47" alt="Download on the App Store">
+      </a>
+      <a class="open" href="pombers://add" data-open>Already have it? Open Pombers</a>
+    </section>
+    <footer class="footer">
+      <a href="/terms/">Terms of Use</a>
+      <span>©<span data-year>2026</span> Cabral Inc</span>
+      <a href="/privacy/">Privacy Policy</a>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var m = /[?&]tag=(?:%23|#)?(\d{1,9})(?:&|$)/.exec(location.search);
+      if (!m) return;
+      var tag = '#' + m[1];
+      document.querySelector('[data-tag]').textContent = tag;
+      document.querySelector('[data-hint]').innerHTML = '';
+      var hint = document.querySelector('[data-hint]');
+      hint.append('Get Pombers, then add ');
+      var b = document.createElement('strong'); b.textContent = tag; hint.append(b);
+      hint.append(' on ');
+      var e = document.createElement('em'); e.textContent = 'Account → Friends'; hint.append(e);
+      hint.append('.');
+      document.querySelector('[data-open]').href = 'pombers://add?tag=' + m[1];
+    })();
+  </script>
+</body>
+</html>

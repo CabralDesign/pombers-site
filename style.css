@@ -169,3 +169,43 @@ img { display: block; }
 .doc .card p:last-child { margin-bottom: 0; }
 
 .doc address { font-style: normal; }
+
+/* Invite page (add.html): the friend's tag, the App Store, and a way into the app. */
+.invite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.invite h1 {
+  margin: 0;
+  font: 600 32px/1.1 var(--brand);
+  letter-spacing: -0.32px;
+}
+
+.invite p {
+  margin: 0;
+  font: 400 16px/1.4 var(--brand);
+  letter-spacing: -0.16px;
+}
+
+.invite strong { font-weight: 600; }
+
+.invite .open {
+  font: 600 16px/1.2 var(--brand);
+  color: var(--black);
+  text-underline-offset: 3px;
+}
+
+.invite .open:hover { color: var(--purple); }
+
+.invite .open:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.invite em { white-space: nowrap; }
