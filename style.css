@@ -1,0 +1,137 @@
+/* pombers.com — Figma "Site" (file biXcGBHwDKVTsxxL7rRehY, node 2829:1745).
+   Fraiche appears only as exported outlines (img/*.svg): its licence covers images of the type,
+   not serving the font. Running text uses the system font. */
+:root {
+  --black: #000;
+  --white: #fff;
+  --gray: #a9adb2;
+  --orange: #ff6c40;
+  --purple: #7f65ff;
+  --text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+
+body { overflow-x: hidden; }
+
+img { display: block; }
+
+/* One column: nav · content · footer, 32px padding, 48px between (as in Figma). */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 32px;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.nav {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav a { display: block; }
+
+/* Home: everything on one screen; the pomber takes whatever height is left. */
+.home {
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+}
+
+.art {
+  flex: 1 1 0;
+  min-height: 180px;
+  align-self: stretch;
+  margin: 0 -32px;
+}
+
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.store { display: block; flex: none; }
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 13px;
+  margin-top: auto;
+}
+
+.footer a:focus-visible,
+.nav a:focus-visible,
+.store:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Text pages: privacy, terms, support. */
+.doc {
+  width: 100%;
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.doc h1 {
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.doc .effective {
+  color: #5f6368;
+  margin: 0 0 32px;
+}
+
+.doc h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 40px 0 8px;
+}
+
+.doc h3 {
+  font-size: 16px;
+  margin: 24px 0 4px;
+}
+
+.doc p, .doc ul, .doc ol { margin: 0 0 16px; }
+
+.doc ul, .doc ol { padding-left: 22px; }
+
+.doc li { margin-bottom: 6px; }
+
+.doc a { color: var(--black); text-underline-offset: 3px; }
+
+.doc a:hover { color: var(--purple); }
+
+.doc .card {
+  border: 4px solid var(--black);
+  border-radius: 24px;
+  padding: 16px 20px;
+  margin: 0 0 24px;
+}
+
+.doc .card p:last-child { margin-bottom: 0; }
+
+.doc address { font-style: normal; }
