@@ -1,6 +1,21 @@
 /* pombers.com — Figma "Site" (file biXcGBHwDKVTsxxL7rRehY, node 2829:1745).
-   Fraiche appears only as exported outlines (img/*.svg): its licence covers images of the type,
-   not serving the font. Running text uses the system font. */
+   Brand type: DynaPuff SemiCondensed (SIL Open Font License — fonts/OFL.txt), as in the app.
+   Long reading text (the legal pages) uses the system font. */
+@font-face {
+  font-family: "DynaPuff SemiCondensed";
+  src: url("/fonts/dynapuff-semicondensed-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DynaPuff SemiCondensed";
+  src: url("/fonts/dynapuff-semicondensed-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --black: #000;
   --white: #fff;
@@ -8,6 +23,7 @@
   --orange: #ff6c40;
   --purple: #7f65ff;
   --text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --brand: "DynaPuff SemiCondensed", var(--text);
 }
 
 * { box-sizing: border-box; }
@@ -43,7 +59,14 @@ img { display: block; }
   justify-content: center;
 }
 
-.nav a { display: block; }
+.nav a, .nav h1 {
+  display: block;
+  margin: 0;
+  font: 600 32px/40px var(--brand);
+  letter-spacing: -0.32px;
+  color: var(--black);
+  text-decoration: none;
+}
 
 /* Home: everything on one screen; the pomber takes whatever height is left. */
 .home {
@@ -72,9 +95,15 @@ img { display: block; }
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  min-height: 13px;
   margin-top: auto;
+  font: 400 12px/14px var(--brand);
+  letter-spacing: -0.12px;
+  color: var(--gray);
 }
+
+.footer a { color: var(--gray); text-decoration: none; }
+
+.footer a:hover { color: var(--black); }
 
 .footer a:focus-visible,
 .nav a:focus-visible,
@@ -90,6 +119,11 @@ img { display: block; }
   max-width: 680px;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.doc h1, .doc h2 {
+  font-family: var(--brand);
+  font-weight: 600;
 }
 
 .doc h1 {

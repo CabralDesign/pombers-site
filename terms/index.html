@@ -7,12 +7,14 @@
   <meta name="description" content="The terms for playing Pombers.">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/dynapuff-semicondensed-semibold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/style.css">
+  <script src="/site.js" defer></script>
 </head>
 <body>
   <div class="page">
     <header class="nav">
-      <a href="/"><img src="/img/pombers.svg" width="116" height="30" alt="Pombers — home"></a>
+      <a href="/" aria-label="Pombers — home">Pombers</a>
     </header>
     <main class="doc">
       <h1>Terms of Use</h1>
@@ -141,9 +143,9 @@
       </address>
     </main>
     <footer class="footer">
-      <a href="/terms/" aria-current="page"><img src="/img/terms-of-use.svg" width="59" height="8" alt="Terms of Use"></a>
-      <img src="/img/copyright.svg" width="77" height="9" alt="© 2027 Cabral Inc">
-      <a href="/privacy/"><img src="/img/privacy-policy.svg" width="63" height="12" alt="Privacy Policy"></a>
+      <a aria-current="page" href="/terms/">Terms of Use</a>
+      <span>©<span data-year>2026</span> Cabral Inc</span>
+      <a href="/privacy/">Privacy Policy</a>
     </footer>
   </div>
 </body>
