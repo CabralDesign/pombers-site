@@ -1,0 +1,33 @@
+# Checks pombers.com from the outside (agents can't reach it): DNS, the HTTPS certificate, and the
+# files Apple and Google fetch. Read-only. Actions → Site check → Run workflow; results are notices.
+name: Site check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DNS
+        run: |
+          for t in A AAAA CAA CNAME NS; do
+            echo "::notice title=DNS pombers.com $t::$(dig +short pombers.com $t | tr '\n' ' ')"
+          done
+          echo "::notice title=DNS www.pombers.com::$(dig +short www.pombers.com | tr '\n' ' ')"
+      - name: HTTPS
+        run: |
+          r=$(curl -sS -o /dev/null -w '%{http_code} %{ssl_verify_result}' https://pombers.com/ 2>&1 || true)
+          echo "::notice title=https://pombers.com/::$r"
+          c=$(echo | openssl s_client -connect pombers.com:443 -servername pombers.com 2>/dev/null | openssl x509 -noout -subject -issuer -enddate 2>/dev/null | tr '\n' ' ')
+          echo "::notice title=Certificate::${c:-none}"
+          h=$(curl -sS -o /dev/null -w '%{http_code} -> %{redirect_url}' http://pombers.com/ 2>&1 || true)
+          echo "::notice title=http://pombers.com/::$h"
+      - name: Apple and Google files
+        run: |
+          for u in https://pombers.com/.well-known/apple-app-site-association https://pombers.com/app-ads.txt "https://pombers.com/add?tag=4412"; do
+            r=$(curl -sS -o /tmp/body -w '%{http_code} %{content_type}' "$u" 2>&1 || true)
+            echo "::notice title=$u::$r · $(head -c 160 /tmp/body 2>/dev/null | tr '\n' ' ')"
+          done
+          r=$(curl -sS -w ' %{http_code}' https://app-site-association.cdn-apple.com/a/v1/pombers.com 2>&1 | tr '\n' ' ' | head -c 300 || true)
+          echo "::notice title=Apple's CDN copy::$r"

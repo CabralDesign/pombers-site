@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["2ZM6FD8K5V.design.cabral.pombers"],
+        "components": [
+          { "/": "/add", "comment": "Invite links: https://pombers.com/add?tag=4412 open Pombers on Friends" },
+          { "/": "/add/", "comment": "the same, with a trailing slash" }
+        ]
+      }
+    ]
+  }
+}
