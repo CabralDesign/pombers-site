@@ -209,3 +209,63 @@ img { display: block; }
 }
 
 .invite em { white-space: nowrap; }
+
+/* Streak page (streak/index.html): a friend's victory streak, from a Brag!! in the app.
+   Figma "Site" → invite: phone 320 wide (2928:35146), desktop 1440 (2926:27243). */
+.streak { gap: 32px; }
+
+.brag {
+  flex: 1 1 0;
+  min-height: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.claim {
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.claim img { width: 100%; height: auto; }
+
+.claim h1,
+.claim p {
+  margin: 0;
+  width: 100%;
+  font-family: var(--brand);
+  font-weight: 600;
+  line-height: 1.05;
+  text-box: trim-both cap alphabetic;
+}
+
+.claim h1 {
+  font-size: 28px;
+  letter-spacing: -0.28px;
+}
+
+.claim p {
+  margin-top: 6px;
+  font-size: 14px;
+  letter-spacing: -0.14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.brag .art {
+  min-height: 140px;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .streak { gap: 48px; }
+  .brag { gap: 48px; }
+  .claim { width: 264px; gap: 5px; }
+  .claim h1 { font-size: 40px; letter-spacing: -0.4px; }
+  .claim p { margin-top: 7px; font-size: 16px; letter-spacing: -0.16px; }
+}

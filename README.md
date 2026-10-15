@@ -14,6 +14,8 @@ headings and footer; the legal pages' body text uses the system font. The footer
 | `/privacy/` | Privacy Policy (App Store Connect privacy policy URL) |
 | `/terms/` | Terms of Use |
 | `/support/` | Support (App Store Connect support URL) |
+| `/add?tag=4412` | Invite links: the friend's tag and the App Store (`add.html`) |
+| `/streak/?n=7` | Brag links: a friend's victory streak, its tier badge (2–3 Cadet · 4–5 Tapper · 6–9 Beast · 10+ Legend) and the App Store. Link preview: `img/share.png` (Figma `message` 2926:27006) |
 | `/app-ads.txt` | AdMob publisher declaration |
 
-Later: invite links (`/add/<tag>`) and `/.well-known/apple-app-site-association`.
+Tier badges (`img/badge-*.svg`) are the app's `BADGES` art (Figma `badge` Level 1–4) in each tier's colour.

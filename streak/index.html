@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>On a roll! Can you beat it? · Pombers</title>
+  <meta name="description" content="A friend is on a victory streak in Pombers. Win more matches in a row to beat it.">
+  <meta name="apple-itunes-app" content="app-id=6814720085">
+  <meta property="og:title" content="Can you beat my streak?">
+  <meta property="og:description" content="Win more Pombers matches in a row than I did.">
+  <meta property="og:image" content="https://pombers.com/img/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pombers popping out of their holes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/dynapuff-semicondensed-semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/site.js" defer></script>
+</head>
+<body>
+  <!-- Brag links from the app: pombers.com/streak/?n=7 (src/game/streak.ts → bragUrl). The number
+       picks the tier, as in the app: 2–3 Cadet · 4–5 Tapper · 6–9 Beast · 10+ Legend.
+       Only digits are ever taken from the link. Figma "Site" → invite (2926:27302 … 2928:35205). -->
+  <div class="page home streak">
+    <header class="nav">
+      <a href="/" aria-label="Pombers — home">Pombers</a>
+    </header>
+    <main class="brag">
+      <div class="claim">
+        <img src="/img/badge-cadet.svg" width="200" height="117" alt="" data-badge>
+        <h1 data-title>On a roll!</h1>
+        <p>Can you beat it?</p>
+      </div>
+      <div class="art">
+        <img src="/img/pomber.svg" width="912" height="717" alt="A pomber peeking out of its hole">
+      </div>
+    </main>
+    <a class="store" href="https://apps.apple.com/app/id6814720085">
+      <img src="/img/app-store.svg" width="140" height="47" alt="Download on the App Store">
+    </a>
+    <footer class="footer">
+      <a href="/terms/">Terms of Use</a>
+      <span>©<span data-year>2026</span> Cabral Inc</span>
+      <a href="/privacy/">Privacy Policy</a>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var m = /[?&]n=(\d{1,4})(?:&|$)/.exec(location.search);
+      var n = m ? parseInt(m[1], 10) : 0;
+      if (n < 2) return; // a streak starts at 2
+      var tier = n >= 10 ? 'legend' : n >= 6 ? 'beast' : n >= 4 ? 'tapper' : 'cadet';
+      var name = { cadet: 'Cadet', tapper: 'Tapper', beast: 'Beast', legend: 'Legend' }[tier];
+      var badge = document.querySelector('[data-badge]');
+      badge.src = '/img/badge-' + tier + '.svg';
+      badge.alt = name + ' badge';
+      document.querySelector('[data-title]').textContent = n + ' on a roll!';
+      document.title = n + ' on a roll! Can you beat it? · Pombers';
+    })();
+  </script>
+</body>
+</html>
