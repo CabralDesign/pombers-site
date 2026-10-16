@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>On a roll! Can you beat it? · Pombers</title>
+  <title>On a roll! Bet you can’t beat it · Pombers</title>
   <meta name="description" content="A friend is on a victory streak in Pombers. Win more matches in a row to beat it.">
   <meta name="apple-itunes-app" content="app-id=6814720085">
   <meta property="og:title" content="Can you beat my streak?">
@@ -23,19 +23,17 @@
 <body>
   <!-- Brag links from the app: pombers.com/streak/?n=7 (src/game/streak.ts → bragUrl). The number
        picks the tier, as in the app: 2–3 Cadet · 4–5 Tapper · 6–9 Beast · 10+ Legend.
-       Only digits are ever taken from the link. Figma "Site" → invite (2926:27302 … 2928:35205). -->
+       Only digits are ever taken from the link. Figma "Site" → link (2952:17456). -->
   <div class="page home streak">
     <header class="nav">
       <a href="/" aria-label="Pombers — home">Pombers</a>
     </header>
     <main class="brag">
-      <div class="claim">
-        <img src="/img/badge-cadet.svg" width="200" height="117" alt="" data-badge>
+      <div class="tag cadet" data-tag>
+        <img class="badge" src="/img/badge-cadet.svg" width="200" height="117" alt="" data-badge>
         <h1 data-title>On a roll!</h1>
-        <p>Can you beat it?</p>
-      </div>
-      <div class="art">
-        <img src="/img/pomber.svg" width="912" height="717" alt="A pomber peeking out of its hole">
+        <p>Bet you can’t beat it</p>
+        <img class="hero" src="/img/pomber-cadet.svg" width="28" height="44" alt="" data-pomber>
       </div>
     </main>
     <a class="store" href="https://apps.apple.com/app/id6814720085">
@@ -54,11 +52,13 @@
       if (n < 2) return; // a streak starts at 2
       var tier = n >= 10 ? 'legend' : n >= 6 ? 'beast' : n >= 4 ? 'tapper' : 'cadet';
       var name = { cadet: 'Cadet', tapper: 'Tapper', beast: 'Beast', legend: 'Legend' }[tier];
+      document.querySelector('[data-tag]').className = 'tag ' + tier;
       var badge = document.querySelector('[data-badge]');
       badge.src = '/img/badge-' + tier + '.svg';
       badge.alt = name + ' badge';
+      document.querySelector('[data-pomber]').src = '/img/pomber-' + tier + '.svg';
       document.querySelector('[data-title]').textContent = n + ' on a roll!';
-      document.title = n + ' on a roll! Can you beat it? · Pombers';
+      document.title = n + ' on a roll! Bet you can’t beat it · Pombers';
     })();
   </script>
 </body>

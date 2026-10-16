@@ -22,6 +22,12 @@
   --gray: #a9adb2;
   --orange: #ff6c40;
   --purple: #7f65ff;
+  --blue: #3f6fff;
+  --red: #f94346;
+  --dark-blue: #102a7b;
+  --dark-purple: #3e317f;
+  --dark-red: #7f3133;
+  --dark-orange: #7f4331;
   --text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --brand: "DynaPuff SemiCondensed", var(--text);
 }
@@ -210,8 +216,12 @@ img { display: block; }
 
 .invite em { white-space: nowrap; }
 
-/* Streak page (streak/index.html): a friend's victory streak, from a Brag!! in the app.
-   Figma "Site" → invite: phone 320 wide (2928:35146), desktop 1440 (2926:27243). */
+/* Streak page (streak/index.html, streak/<n>/): a friend's victory streak, from a Brag!! in the app.
+   Figma "Site" → link (2952:17456): the streak as a tier-coloured card, white badge and title, a
+   heart-eyed pomber rising from the card's bottom edge. Phone 320 wide (2928:35146), desktop 1440
+   (2926:27243). The card keeps its shape and grows with the space left between the nav and the App
+   Store badge (300 tall on a 320 × 568 phone, at most 618.69 as on desktop); everything inside is
+   sized from its height, --h, in the proportions of the 5 / 7 / 10 frames. */
 .streak { gap: 32px; }
 
 .brag {
@@ -219,24 +229,42 @@ img { display: block; }
   min-height: 0;
   align-self: stretch;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  container-type: size;
 }
 
-.claim {
-  width: 187px;
+.tag {
+  --h: 300px;
+  --card: var(--blue);
+  --ink: var(--dark-blue);
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  width: calc(var(--h) * 0.68966);
+  height: var(--h);
+  padding: calc(var(--h) * 0.13136) calc(var(--h) * 0.09195) 0;
+  border-radius: calc(var(--h) * 0.11753);
+  background: var(--card);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
   text-align: center;
 }
 
-.claim img { width: 100%; height: auto; }
+@supports (height: 1cqh) {
+  /* The space left, less Figma's 3.6px above and below; never wider than the space. */
+  .tag { --h: min(618.69px, calc(100cqh - 7.2px), calc(100cqw * 1.45)); }
+}
 
-.claim h1,
-.claim p {
+.tag.tapper { --card: var(--purple); --ink: var(--dark-purple); }
+.tag.beast { --card: var(--red); --ink: var(--dark-red); }
+.tag.legend { --card: var(--orange); --ink: var(--dark-orange); }
+
+.tag .badge { width: 100%; height: auto; }
+
+.tag h1,
+.tag p {
   margin: 0;
   width: 100%;
   font-family: var(--brand);
@@ -245,27 +273,29 @@ img { display: block; }
   text-box: trim-both cap alphabetic;
 }
 
-.claim h1 {
-  font-size: 28px;
-  letter-spacing: -0.28px;
+.tag h1 {
+  margin-top: calc(var(--h) * 0.02627);
+  font-size: calc(var(--h) * 0.07225);
+  letter-spacing: -0.01em;
+  color: var(--white);
 }
 
-.claim p {
-  margin-top: 6px;
-  font-size: 14px;
-  letter-spacing: -0.14px;
-  color: rgba(0, 0, 0, 0.6);
+.tag p {
+  margin-top: calc(var(--h) * 0.03859);
+  font-size: calc(var(--h) * 0.03284);
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
-.brag .art {
-  min-height: 140px;
-  margin: 0;
+.tag .hero {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--h) * -0.0815);
+  width: calc(var(--h) * 0.25616);
+  height: auto;
+  transform: translateX(-50%);
 }
 
 @media (min-width: 768px) {
   .streak { gap: 48px; }
-  .brag { gap: 48px; }
-  .claim { width: 264px; gap: 5px; }
-  .claim h1 { font-size: 40px; letter-spacing: -0.4px; }
-  .claim p { margin-top: 7px; font-size: 16px; letter-spacing: -0.16px; }
 }

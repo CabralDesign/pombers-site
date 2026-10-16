@@ -4,7 +4,8 @@
 Each page is the streak page with its number built in, so link previews (iMessage, WhatsApp, X...)
 show that streak: og:image is img/streak/<n>.png, rendered by the app repo's
 scripts/streak-previews.ts (Figma Marketing -> message). Tiers as in the app:
-2-3 Cadet, 4-5 Tapper, 6-9 Beast, 10+ Legend. Run from the site root: python3 tools/streak-pages.py
+2-3 Cadet, 4-5 Tapper, 6-9 Beast, 10+ Legend. The page itself: Figma "Site" -> link (2952:17456).
+Run from the site root: python3 tools/streak-pages.py
 """
 import html
 import os
@@ -21,7 +22,7 @@ PAGE = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>{n} on a roll! Can you beat it? · Pombers</title>
+  <title>{n} on a roll! Bet you can’t beat it · Pombers</title>
   <meta name="description" content="{n} Pombers wins in a row. Win more in a row to beat it.">
   <meta name="apple-itunes-app" content="app-id=6814720085">
   <meta property="og:type" content="website">
@@ -49,13 +50,11 @@ PAGE = """<!doctype html>
       <a href="/" aria-label="Pombers — home">Pombers</a>
     </header>
     <main class="brag">
-      <div class="claim">
-        <img src="/img/badge-{tier}.svg" width="200" height="117" alt="{name} badge">
+      <div class="tag {tier}">
+        <img class="badge" src="/img/badge-{tier}.svg" width="200" height="117" alt="{name} badge">
         <h1>{n} on a roll!</h1>
-        <p>Can you beat it?</p>
-      </div>
-      <div class="art">
-        <img src="/img/pomber.svg" width="912" height="717" alt="A pomber peeking out of its hole">
+        <p>Bet you can’t beat it</p>
+        <img class="hero" src="/img/pomber-{tier}.svg" width="28" height="44" alt="">
       </div>
     </main>
     <a class="store" href="https://apps.apple.com/app/id6814720085">
